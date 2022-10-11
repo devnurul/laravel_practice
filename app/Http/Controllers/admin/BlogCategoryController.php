@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
+use function Ramsey\Uuid\v1;
+
 class BlogCategoryController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data['blogCategories'] = BlogCategory::all();
+        return view('admin.blogCategory.listData', $data);
     }
 
     /**
