@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
+use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class BlogCategoryController extends Controller
 {
@@ -17,7 +18,8 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        $data['blogCategories'] = BlogCategory::all();
+        $data['blogCategories'] =BlogCategory::get();
+        // $data['blogCategories'] = BlogCategory::all();
         return view('admin.blogCategory.listData', $data);
     }
 
@@ -28,7 +30,7 @@ class BlogCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.blogCategory.createData');
     }
 
     /**
@@ -39,7 +41,11 @@ class BlogCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        BlogCategory::create( [
+            'name'      => $request->name
+           ]);
+           Toastr::success('User has been successfuly created', 'Title', ["positionClass" => "toast-top-center"]);
+        return redirect()->back();
     }
 
     /**
@@ -61,7 +67,8 @@ class BlogCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['categoryinfo'] = BlogCategory::find($id);
+        return view('admin.BlogCategory.updateData', $data);
     }
 
     /**
@@ -73,7 +80,13 @@ class BlogCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        BlogCategory::find($id)->update([
+            'name'      => $request->name,
+          
+        ]);
+        Toastr::success('User has been successfuly update', 'Title', ["positionClass" => "toast-top-center"]);
+        return redirect()->back();
+        
     }
 
     /**
@@ -84,6 +97,8 @@ class BlogCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        BlogCategory::find($id)->delete();
+        Toastr::success('User has been successfuly update', 'Deleted', ["positionClass" => "toast-top-center"]);
+        return redirect()->route('blogCategory.index');
     }
 }

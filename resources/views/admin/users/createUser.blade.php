@@ -1,12 +1,12 @@
 @extends('admin.layout.default')
 
-@section('title', 'Create User')
+@section('title', 'Create Category')
 
 @section('content')
 <div class="breadcrumb-line">
     <ul class="breadcrumb">
         <li><a href="index.html"><i class="icon-home2 position-left"></i>Admin</a></li>
-        <li><a href="datatable_basic.html">create-user</a></li> 
+        <li><a href="datatable_basic.html">Create-Data</a></li> 
     </ul>
 </div>
 

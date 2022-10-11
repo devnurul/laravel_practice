@@ -20,7 +20,7 @@
         <ul class="breadcrumb-elements">
             <div class="heading-elements">
                 <ul class="icons-list">
-                    <li><a class="btn btn-primary btn-lg text-white" href="{{ url('user/create') }}">Add New</a></li>
+                    <li><a class="btn btn-primary btn-lg text-white" href="{{ route('blogCategory.create') }}">Add New</a></li>
                     
                 </ul>
             </div>
@@ -42,26 +42,34 @@
 
             @foreach ($blogCategories as $key => $blogCategory)
                 <tr>
-                <td>{{ ++$key}}</td>
-                <td>{{ $$blogCategory->name }}</td>
-                <td>Active</td>
-                <td class="text-center">
-                    <ul class="icons-list">
-                        <li>
-                            <a href="{{ url('user/edit') }}/{{ $$blogCategory->id }}"> <i class= "icon-pen6"></i></a>
-                        </li>
-                        <li>
-                            <a href="">
-                               <form action="{{ url('user/delete', $$blogCategory->id) }}" method="post">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" ><i class= "icon-trash-alt"></i></button>
-                            </form>  
-                            </a>
-                           
-                        </li>
-                    </ul>
-                </td>
+                     <td>{{ ++$key}}</td>
+                     <td>{{ $blogCategory->name }}</td>
+                     <td>
+                        @if ($blogCategory->valid == 1)
+                            <span class="label label-success">Active</span>
+                        
+                        @else
+                            <span class="label label-danger">Inactive</span>
+                        @endif
+
+                    </td>
+                    <td class="text-center">
+                        <ul class="icons-list">
+                            <li>
+                                <a href="{{ route('blogCategory.edit', $blogCategory->id) }}"> <i class= "icon-pen6"></i></a>
+                            </li>
+                            <li>
+                                <a href="">
+                                <form action="{{ route('blogCategory.destroy', $blogCategory->id) }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" ><i class= "icon-trash-alt"></i></button>
+                                </form>  
+                                </a>
+                            
+                            </li>
+                        </ul>
+                    </td>
             </tr>  
             @endforeach
               

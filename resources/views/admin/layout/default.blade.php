@@ -119,7 +119,7 @@
 									<ul>
 										
 										<li><a href="#">All Posts</a></li>
-										<li><a href="#">Categories</a></li>
+										<li><a href="{{ route('blogCategory.index') }}">Categories</a></li>
 										
 									</ul>
 								</li>
