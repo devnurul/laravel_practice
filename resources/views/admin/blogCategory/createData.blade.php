@@ -13,7 +13,7 @@
 <div class="panel panel-flat mt-5">
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
-              <h1>Add New Blog Category</h1>          
+              <h1>Add New Category</h1>          
         </ul>
     </div>
 </div>
