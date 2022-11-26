@@ -19,5 +19,6 @@ Route::put('user/edit/{id}', [App\Http\Controllers\admin\UserController::class, 
 Route::delete('user/delete/{id}', [App\Http\Controllers\admin\UserController::class, 'delete']);
 
 //resource_path
+//nurul islam
 
 Route::resource('blogCategory', App\Http\Controllers\admin\BlogCategoryController::class);
